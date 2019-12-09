@@ -8,6 +8,13 @@ import os
 from time import sleep
 import googletrans
 
+# GLOBALS
+tesseract_binary = '/home/nmarcopo/local/bin/tesseract'
+tessdata_dir = '../pxj_output/'
+tessconfig_dir = '../tesseract_config/'
+tessconfig_file = 'jpnconf'
+
+
 # rectangle from https://stackoverflow.com/questions/27152904/calculate-overlapped-area-between-two-rectangles
 # rectangle object to calculate intersections
 Rectangle = namedtuple('Rectangle', 'xmin ymin xmax ymax')
@@ -50,7 +57,7 @@ def print_intersection(rectangles):
 
 def get_ocr_info(img_path):
     with open('stderr.txt', 'w') as f:
-        return subprocess.check_output(['/home/nmarcopo/local/bin/tesseract', '--tessdata-dir', 'pxj-output-max-v5/', img_path, 'stdout', '-l', 'pxj', 'jpnconf'], stderr=f).decode('utf-8')
+        return subprocess.check_output([tesseract_binary, '--tessdata-dir', tessdata_dir, img_path, 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file], stderr=f).decode('utf-8')
 
 if __name__ == "__main__":
     # img_path = 'images/image2.png'
