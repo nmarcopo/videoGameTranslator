@@ -39,7 +39,7 @@ def getOCRString(ocr_info):
                 if char.text.strip() != '':
                     existWord = True
                     # make sure algorithm is confident
-                    if float(char.attrib['title'].split('; ')[1].split()[1]) > 94:
+                    if float(char.attrib['title'].split('; ')[1].split()[1]) > 90:
                         # get bboxes for item
                         bboxes = char.attrib['title'].split('; ')[0].split()[1:]
                         rectangles.append((char.text, Rectangle(int(bboxes[0]), int(bboxes[1]), int(bboxes[2]), int(bboxes[3]))))
@@ -55,9 +55,31 @@ def print_intersection(rectangles):
         if intersection > 20:
             print(intersection, pair[0][0], pair[1][0])
 
-def get_ocr_info(img_path):
+def get_ocr_info(img_path, trainedTess=True):
+    invert = False
+    if float(subprocess.check_output(['convert', img_path, '-colorspace', 'Gray', '-format', '"%[fx:image.mean]"', 'info:']).decode('utf-8').replace('"', '')) < .3:
+        invert = True
+
     with open('stderr.txt', 'w') as f:
-        return subprocess.check_output([tesseract_binary, '--tessdata-dir', tessdata_dir, img_path, 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file], stderr=f).decode('utf-8')
+        if not trainedTess:
+            # quick and dirty way to test the original, untrained tesseract
+            if invert:
+                # convert image to light background dark text if it isn't already
+                invertedImage = subprocess.Popen(('convert', img_path, '-channel', 'RGB', '-negate', '-'), stdout=subprocess.PIPE)
+                out = subprocess.check_output([tesseract_binary, '-', 'stdout', '-l', 'jpn', tessconfig_dir + tessconfig_file, '--psm', '11'], stdin=invertedImage.stdout, stderr=f).decode('utf-8')
+                invertedImage.wait()
+                return out
+            else:
+                return subprocess.check_output([tesseract_binary, img_path, 'stdout', '-l', 'jpn', tessconfig_dir + tessconfig_file, '--psm', '11'], stderr=f).decode('utf-8')
+        else:
+            if invert:
+                # convert image to light background dark text if it isn't already
+                invertedImage = subprocess.Popen(('convert', img_path, '-channel', 'RGB', '-negate', '-'), stdout=subprocess.PIPE)
+                out = subprocess.check_output([tesseract_binary, '--tessdata-dir', tessdata_dir, '-', 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file, '--psm', '11'], stdin=invertedImage.stdout, stderr=f).decode('utf-8')
+                invertedImage.wait()
+                return out
+            else:
+                return subprocess.check_output([tesseract_binary, '--tessdata-dir', tessdata_dir, img_path, 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file, '--psm', '11'], stderr=f).decode('utf-8')
 
 if __name__ == "__main__":
     # img_path = 'images/image2.png'
