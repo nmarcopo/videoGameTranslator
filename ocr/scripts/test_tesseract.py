@@ -57,36 +57,48 @@ def print_intersection(rectangles):
         if intersection > 20:
             print(intersection, pair[0][0], pair[1][0])
 
-def get_ocr_info(img_path, tess_binary=tesseract_binary):
+def get_ocr_info(img_path, trainedTess=True):
     invert = False
     if float(subprocess.check_output(['convert', img_path, '-colorspace', 'Gray', '-format', '"%[fx:image.mean]"', 'info:']).decode('utf-8').replace('"', '')) < .3:
         invert = True
 
     with open('stderr.txt', 'w') as f:
-        if invert:
-            # convert image to light background dark text if it isn't already
-            invertedImage = subprocess.Popen(('convert', img_path, '-channel', 'RGB', '-negate', '-'), stdout=subprocess.PIPE)
-            out = subprocess.check_output([tess_binary, '--tessdata-dir', tessdata_dir, '-', 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file, '--psm', '11'], stdin=invertedImage.stdout, stderr=f).decode('utf-8')
-            invertedImage.wait()
-            return out
+        if not trainedTess:
+            # quick and dirty way to test the original, untrained tesseract
+            if invert:
+                # convert image to light background dark text if it isn't already
+                invertedImage = subprocess.Popen(('convert', img_path, '-channel', 'RGB', '-negate', '-'), stdout=subprocess.PIPE)
+                out = subprocess.check_output([tesseract_binary, '-', 'stdout', '-l', 'jpn', tessconfig_dir + tessconfig_file, '--psm', '11'], stdin=invertedImage.stdout, stderr=f).decode('utf-8')
+                invertedImage.wait()
+                return out
+            else:
+                return subprocess.check_output([tesseract_binary, img_path, 'stdout', '-l', 'jpn', tessconfig_dir + tessconfig_file, '--psm', '11'], stderr=f).decode('utf-8')
         else:
-            return subprocess.check_output([tess_binary, '--tessdata-dir', tessdata_dir, img_path, 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file, '--psm', '11'], stderr=f).decode('utf-8')
+            if invert:
+                # convert image to light background dark text if it isn't already
+                invertedImage = subprocess.Popen(('convert', img_path, '-channel', 'RGB', '-negate', '-'), stdout=subprocess.PIPE)
+                out = subprocess.check_output([tesseract_binary, '--tessdata-dir', tessdata_dir, '-', 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file, '--psm', '11'], stdin=invertedImage.stdout, stderr=f).decode('utf-8')
+                invertedImage.wait()
+                return out
+            else:
+                return subprocess.check_output([tesseract_binary, '--tessdata-dir', tessdata_dir, img_path, 'stdout', '-l', 'pxj', tessconfig_dir + tessconfig_file, '--psm', '11'], stderr=f).decode('utf-8')
 
 if __name__ == "__main__":
     # img_path = '../test/いつまでも　さみしがって　いられないわよね！おにいちゃん　だもんね！！.png'
     # ocr_info = get_ocr_info(img_path)
     # ocr_string = getOCRString(ocr_info).replace('\n', '')
     # print(ocr_string)
-    
-    for root, dirs, files in os.walk('../test/'):
-        cers = []
-        for img_path in files:
-            ocr_info = get_ocr_info(root + img_path)
-            ocr_string = getOCRString(ocr_info).replace('\n', '')
-            print(ocr_string)
-            # format string by removing all whitespace and file type
-            img_path = ''.join(img_path.split()).replace('.png', '')
-            cers.append((img_path, ocr_string))
 
-        break # don't go more than one directory deep
-    print("cer:", cer(cers))
+    for trained in [True, False]:
+        for root, dirs, files in os.walk('../test/'):
+            cers = []
+            for img_path in files:
+                ocr_info = get_ocr_info(root + img_path, trained)
+                ocr_string = getOCRString(ocr_info).replace('\n', '')
+                # print(ocr_string)
+                # format string by removing all whitespace and file type
+                img_path = ''.join(img_path.split()).replace('.png', '')
+                cers.append((img_path, ocr_string))
+
+            break # don't go more than one directory deep
+        print("trained:", trained, "cer:", cer(cers))
