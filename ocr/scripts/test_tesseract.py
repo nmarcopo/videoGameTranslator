@@ -89,16 +89,20 @@ if __name__ == "__main__":
     # ocr_string = getOCRString(ocr_info).replace('\n', '')
     # print(ocr_string)
 
-    for trained in [True, False]:
-        for root, dirs, files in os.walk('../test/'):
-            cers = []
-            for img_path in files:
-                ocr_info = get_ocr_info(root + img_path, trained)
-                ocr_string = getOCRString(ocr_info).replace('\n', '')
-                # print(ocr_string)
-                # format string by removing all whitespace and file type
-                img_path = ''.join(img_path.split()).replace('.png', '')
-                cers.append((img_path, ocr_string))
+    testDir = '../test/'
+    for game in ['bof', 'ffiv', 'ffvi']:
+        print("getting metrics for the game", game, "...")
+        for trained in [True, False]:
+            for root, dirs, files in os.walk(testDir + game + '/'):
+                cers = []
+                for img_path in files:
+                    ocr_info = get_ocr_info(root + img_path, trained)
+                    ocr_string = getOCRString(ocr_info).replace('\n', '')
+                    # print(ocr_string)
+                    # format string by removing all whitespace and file type
+                    img_path = ''.join(img_path.split()).replace('.png', '')
+                    cers.append((img_path, ocr_string))
 
-            break # don't go more than one directory deep
-        print("trained:", trained, "cer:", cer(cers))
+                break # don't go more than one directory deep
+            print("trained:", trained, "cer:", cer(cers))
+        print()
