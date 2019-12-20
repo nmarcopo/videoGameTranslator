@@ -15,6 +15,7 @@ tessdata_dir = '../pxj_output/'
 tessconfig_dir = '../tesseract_config/'
 tessconfig_file = 'jpnconf'
 translation_dir = '../translation_model/'
+screenshot_dir = '/home/nmarcopo/Pictures/'
 
 
 def getOCRString(ocr_info):
@@ -67,7 +68,6 @@ if __name__ == "__main__":
 
     print("Waiting for a new screenshot...")
     # screenshot_dir = '/home/nmarcopo/snap/retroarch/318/.config/retroarch/screenshots/'
-    screenshot_dir = '/home/nmarcopo/Pictures/'
     list_of_files = glob.glob(screenshot_dir + '*')
     try:
         existing_file = max(list_of_files, key=os.path.getctime)

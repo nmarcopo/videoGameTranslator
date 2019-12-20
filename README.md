@@ -4,6 +4,8 @@
 ## Requirements
 
 - Python >= 3.6
+- Imagemagick
+- Tesseract >= 4.0.0
 
 Install requirements with `pip`:
 
@@ -23,13 +25,21 @@ mv translation_model videoGameTranslator/nmt/
 
 ## Full System
 
-#TODO
+To run the full system:
 
+```bash
+cd full_system/scripts/
+python3 run_on_screenshots.py
+```
 
+Start playing your selected game in an emulator and when you want to see a translation, just take a screenshot of the text. You'll need to modify some global variables to fit your system.
 
 # References
 
 Dataset: https://nlp.stanford.edu/projects/jesc/
+
 BLEU scorer: https://github.com/moses-smt/mosesdecoder
+
 OpenNMT-tf: https://github.com/OpenNMT/OpenNMT-tf
+
 Sentencepeice: https://github.com/google/sentencepiece
