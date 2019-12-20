@@ -4,10 +4,10 @@
 ## Requirements
 
 - Python >= 3.6
-- Imagemagick
-- Tesseract >= 4.0.0
+- Imagemagick [Download Page](https://imagemagick.org/script/download.php)
+- Tesseract >= 4.0.0 [Installation Guide](https://github.com/tesseract-ocr/tesseract/wiki)
 
-Install requirements with `pip`:
+Install other requirements with `pip`:
 
 ```bash
 pip install -r requirements.txt
