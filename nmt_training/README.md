@@ -14,8 +14,7 @@ pip install sentencepiece
 
 ## Replicate the Training
  
-1. Download the data from JESC website [here](https://nlp.stanford.edu/projects/jesc/data/split.tar.gz) and unzip the contents into this folder
-Download 
+1. Download the data from JESC website [here](https://nlp.stanford.edu/projects/jesc/data/split.tar.gz) and unzip the contents into this folder 
  
 2. Download FastText Pre-trained Embedding [Japanese](https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.ja.300.vec.gz), [English](https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.en.300.vec.gz) and unzip the contents into this folder
 
