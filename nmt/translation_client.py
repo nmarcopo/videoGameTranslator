@@ -64,6 +64,8 @@ def main():
 
   while True:
     text = input("Source: ")
+    if text == '':
+        continue
     output = translator.translate([text])
     print("Target: %s" % output[0])
     print(output[0])

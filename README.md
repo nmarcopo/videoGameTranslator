@@ -30,3 +30,6 @@ mv translation_model videoGameTranslator/nmt/
 # References
 
 Dataset: https://nlp.stanford.edu/projects/jesc/
+BLEU scorer: https://github.com/moses-smt/mosesdecoder
+OpenNMT-tf: https://github.com/OpenNMT/OpenNMT-tf
+Sentencepeice: https://github.com/google/sentencepiece
