@@ -14,22 +14,30 @@ pip install sentencepiece
 
 ## Replicate the Training
 
-1. Download the data from JESC website [here](https://nlp.stanford.edu/projects/jesc/data/split.tar.gz)
+1. Download the data from JESC website [here](https://nlp.stanford.edu/projects/jesc/data/split.tar.gz) and unzip the contents into this folder
 
-2. Train sentencepiece model on the training set
+2. split the data into language pairs
+
+```bash
+python split.py
+```
+
+This will create 6 files {train|dev|test}.{jpn|eng}
+
+3. Train sentencepiece model on the training set for Japanese and English
 ```bash
 python sp_trainer.py --input-file train.<language> --model-name sp.<language>
 ```
 
-3. Use this command to run OpenNMT on custom configuration
+4. Use this command to run OpenNMT on custom configuration
 ```bash
 onmt-main --config config.yml --model transformer_custom.py train --with_eval
 ```
 This will save all the training files and the models under model directory `train_transfomer_relative/`
 
-4. Run prediction using the trained model
+5. Run prediction using the trained model
 ```bash
-onmt-main --model_type transformer_custom.py --config config.yml --checkpoint_path train_transfomer_relative/ infer --features_file test.jp --predictions_file pred.en.txt
+onmt-main --model transformer_custom.py --config config.yml --checkpoint_path train_transfomer_relative/ infer --features_file test.jp --predictions_file pred.en.txt
 ```
 
 This will use the most recent model on the model directory and save the prediction text as pred.en.txt
