@@ -1,7 +1,7 @@
 # Video Game Real-time Translator
 ## Nicholas Marcopoli (nmarcopo), Chan Hee (Luke) Song (csong1)
 
-# Requirements
+## Requirements
 
 - Python >= 3.6
 
@@ -21,12 +21,12 @@ mv translation_model videoGameTranslator/nmt/
  
 
 
-# Full System
+## Full System
 
 #TODO
 
 
-# Machine Translation System
+## Machine Translation System
 
 ```bash
 python translation_client.py
