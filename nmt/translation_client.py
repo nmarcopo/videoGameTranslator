@@ -7,7 +7,7 @@ import argparse
 import os
 
 import tensorflow as tf
-import tensorflow_addons as tfa  # Register TensorFlow Addons kernels.
+import tensorflow_addons as tfa 
 
 import pyonmttok
 

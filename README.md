@@ -26,10 +26,7 @@ mv translation_model videoGameTranslator/nmt/
 #TODO
 
 
-## Machine Translation System
 
-```bash
-python translation_client.py
-```
+# References
 
-Brings up interactive session where you can input Japanese from stdin and the system outputs English on stdout
+Dataset: https://nlp.stanford.edu/projects/jesc/

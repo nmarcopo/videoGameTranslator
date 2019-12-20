@@ -1,0 +1,64 @@
+# Training setup for the Transformer model
+
+model_dir: train_transfomer_relative/
+
+data:
+  train_features_file: train.jpn
+  train_labels_file: train.eng
+  eval_features_file: dev.jpn
+  eval_labels_file: dev.eng
+  source_vocabulary: sp.jpn.vocab
+  target_vocabulary: sp.eng.vocab
+
+  source_tokenization:
+    type: OpenNMTTokenizer
+    params:
+      mode: none
+      sp_model_path: sp.jpn.model
+
+  target_tokenization:
+    type: OpenNMTTokenizer
+    params:
+      mode: none
+      sp_model_path: sp.eng.model
+
+  source_embedding:
+    path: cc.ja.300.vec
+    with_header: True
+    case_insensitive: True
+    trainable: True
+
+  target_embedding:
+    path: cc.en.300.vec
+    with_header: True
+    case_insensitive: True
+    trainable: True
+
+train:
+  keep_checkpoint_max: 3
+  batch_type: tokens
+  batch_size: 3072
+  effective_batch_size: 20000
+  max_step: 1000000
+
+param:
+  average_loss_in_time: true
+  label_smoothing: 0.1
+  optimizer: LazyAdam
+  optimizer_params:
+    beta_1: 0.9
+    beta_2: 0.998
+  
+  learning_rate: 2.0
+  decay_type: NoamDecay
+  decay_params:
+    model_dim: 512
+    warmup_steps: 8000
+
+eval:
+  external_evaluators: bleu
+  early_stopping:
+    metric: bleu
+    min_improvement: 0.2
+    steps: 4
+  export_on_best: bleu
