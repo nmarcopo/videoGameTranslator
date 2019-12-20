@@ -10,12 +10,12 @@ from time import sleep
 from translation_client import Translator
 
 # GLOBALS
-tesseract_binary = '/home/nmarcopo/local/bin/tesseract'
+tesseract_binary = '/usr/local/bin/tesseract' # Edit this to your local tessearct path
 tessdata_dir = '../pxj_output/'
 tessconfig_dir = '../tesseract_config/'
 tessconfig_file = 'jpnconf'
 translation_dir = '../translation_model/'
-screenshot_dir = '/home/nmarcopo/Pictures/'
+screenshot_dir = '/Users/chanhee/Desktop/'  # Edit this to your local screenshot saving path
 
 
 def getOCRString(ocr_info):
@@ -69,6 +69,7 @@ if __name__ == "__main__":
     print("Waiting for a new screenshot...")
     # screenshot_dir = '/home/nmarcopo/snap/retroarch/318/.config/retroarch/screenshots/'
     list_of_files = glob.glob(screenshot_dir + '*')
+    print(list_of_files)
     try:
         existing_file = max(list_of_files, key=os.path.getctime)
     except ValueError:
