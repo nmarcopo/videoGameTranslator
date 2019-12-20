@@ -4,4 +4,4 @@ tensorflow==2.0.*
 pyonmttok
 # for OCR
 tqdm
-PIL
+pillow

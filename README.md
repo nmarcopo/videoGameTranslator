@@ -7,6 +7,12 @@
 - Imagemagick [Download Page](https://imagemagick.org/script/download.php)
 - Tesseract >= 4.0.0 [Installation Guide](https://github.com/tesseract-ocr/tesseract/wiki)
 
+For MAC (using homebrew):
+```
+brew install imagemagick
+brew install tesseract
+```
+
 Install other requirements with `pip`:
 
 ```bash
@@ -18,7 +24,7 @@ Download translation model from
 
 ```
 tar -xvf translation_model.tar.gz
-mv translation_model videoGameTranslator/nmt/
+mv translation_model videoGameTranslator/full_system/
 ```
  
 
