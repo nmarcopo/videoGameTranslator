@@ -33,12 +33,20 @@ mv translation_model videoGameTranslator/full_system/
 
 To run the full system:
 
+Edit global variables in `full_system/scripts/run_on_screenshots.py`
+
+1. change `tesseract_binary` to correctly point to your tesseract binary
+  * For MAC, `which tesseract` will show you the path to tesseract binary
+
+2. change `screenshot_dir` to the folder where your OS is saving screenshot
+  * For MAC, it is usually `/Users/<Your OS Username>/Desktop/`
+
 ```bash
 cd full_system/scripts/
 python3 run_on_screenshots.py
 ```
 
-Start playing your selected game in an emulator and when you want to see a translation, just take a screenshot of the text. You'll need to modify some global variables to fit your system.
+Start playing your selected game in an emulator and when you want to see a translation, just take a screenshot using your OS's screenshot functionality.
 
 # References
 
