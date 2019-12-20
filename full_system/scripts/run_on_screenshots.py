@@ -7,14 +7,14 @@ import glob
 import os
 from time import sleep
 # import googletrans
-from translation_client import Translator
+from full_system.nmt.translation_client import Translator
 
 # GLOBALS
 tesseract_binary = '/home/nmarcopo/local/bin/tesseract'
 tessdata_dir = '../pxj_output/'
 tessconfig_dir = '../tesseract_config/'
 tessconfig_file = 'jpnconf'
-translation_dir = '../translation_model/'
+translation_dir = '../nmt/translation_model/'
 screenshot_dir = '/home/nmarcopo/Pictures/'
 
 

@@ -13,5 +13,5 @@ Brings up interactive session where you can input Japanese from stdin and the sy
 ## Getting BLEU score
 
 ```
-   ./multi-bleu-detok.perl -lc [reference] < [prediction]
+./multi-bleu-detok.perl -lc [reference] < [prediction]
 ```

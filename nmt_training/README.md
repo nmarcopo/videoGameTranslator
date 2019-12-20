@@ -23,13 +23,13 @@ python sp_trainer.py --input-file train.<language> --model-name sp.<language>
 
 3. Use this command to run OpenNMT on custom configuration
 ```bash
-    onmt-main --model_type transformer_custom.py --config config.yml train --with_eval
+onmt-main --model_type transformer_custom.py --config config.yml train --with_eval
 ```
 This will save all the training files and the models under model directory `train_transfomer_relative/`
 
 4. Run prediction using the trained model
 ```bash
-    onmt-main --model_type transformer_custom.py --config config.yml --checkpoint_path train_transfomer_relative/ infer --features_file test.jp --predictions_file pred.en.txt
+onmt-main --model_type transformer_custom.py --config config.yml --checkpoint_path train_transfomer_relative/ infer --features_file test.jp --predictions_file pred.en.txt
 ```
 
 This will use the most recent model on the model directory and save the prediction text as pred.en.txt
