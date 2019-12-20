@@ -57,7 +57,7 @@ class Translator(object):
 
 def main():
   parser = argparse.ArgumentParser(description="Translation client")
-  parser.add_argument("export_dir", default="translation_model", help="Saved model directory")
+  parser.add_argument("--export_dir", default="translation_model", help="Saved model directory")
   args = parser.parse_args()
 
   translator = Translator(args.export_dir)

@@ -1,4 +1,4 @@
 # For NMT
-tensorflow>=2.*
 tensorflow-addons
+tensorflow==2.0.*
 pyonmttok
