@@ -66,16 +66,16 @@ if __name__ == "__main__":
     # ocr_info = get_ocr_info(img_path)
     # print(getOCRString(ocr_info))
 
-    print("Waiting for a new screenshot...")
     # screenshot_dir = '/home/nmarcopo/snap/retroarch/318/.config/retroarch/screenshots/'
     list_of_files = glob.glob(screenshot_dir + '*')
-    print(list_of_files)
     try:
         existing_file = max(list_of_files, key=os.path.getctime)
     except ValueError:
         existing_file = None
     # translator = googletrans.Translator()
     translator = Translator(translation_dir)
+    
+    print("\nWaiting for a new screenshot...")
     while True:
         list_of_files = glob.glob(screenshot_dir + '*')
         try:
@@ -95,5 +95,6 @@ if __name__ == "__main__":
                 print('translation:\n',translator.translate([''.join(ocr_string.split())]))
             else:
                 print('No text found in screenshot...')
+            print("\nWaiting for a new screenshot...")
             existing_file = latest_file
         sleep(2)
