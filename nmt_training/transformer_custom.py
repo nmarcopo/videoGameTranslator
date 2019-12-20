@@ -20,5 +20,4 @@ def model():
       attention_dropout=0.1,
       ffn_dropout=0.1,
       position_encoder_class = None,
-      maximum_relative_position = 20,
-      share_embeddings=onmt.models.EmbeddingsSharingLevel.ALL)
+      maximum_relative_position = 20)

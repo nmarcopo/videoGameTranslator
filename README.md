@@ -48,7 +48,7 @@ cd full_system/scripts/
 python3 run_on_screenshots.py
 ```
 
-Start playing your selected game in an emulator and when you want to see a translation, just take a screenshot using your OS's screenshot functionality.
+Start playing your selected game in an emulator and when you want to see a translation, just take a screenshot using your OS's screenshot functionality. The translation will output on the terminal.
 
 # References
 

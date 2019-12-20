@@ -14,5 +14,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    spm.SentencePieceTrainer.Train(f'--input={args.input_file} --model_prefix={args.model_name} \
-                                     --vocab_size={args.vocab_size}')
+    spm.SentencePieceTrainer.Train(f'--input={args.input_file} --model_prefix={args.model_name} --vocab_size={args.vocab_size}')
+
