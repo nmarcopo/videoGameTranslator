@@ -1,0 +1,4 @@
+# For NMT
+tensorflow>=2.*
+tensorflow-addons
+pyonmttok
