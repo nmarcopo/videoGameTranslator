@@ -25,6 +25,8 @@ class Translator(object):
 
   def translate(self, texts):
     """Translates a batch of texts."""
+    if texts[0] == '':
+        return ['']
     inputs = self._preprocess(texts)
     outputs = self._translate_fn(**inputs)
     return self._postprocess(outputs)
@@ -64,10 +66,12 @@ def main():
 
   while True:
     text = input("Source: ")
-    if text == '':
-        continue
+    # if text == '':
+    #     print(f"Target: ")
+    #     print('')
+    #     continue
     output = translator.translate([text])
-    print("Target: %s" % output[0])
+    print(f"Target: {output[0]}")
     print(output[0])
     print("")
 
