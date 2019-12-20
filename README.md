@@ -43,3 +43,7 @@ BLEU scorer: https://github.com/moses-smt/mosesdecoder
 OpenNMT-tf: https://github.com/OpenNMT/OpenNMT-tf
 
 Sentencepeice: https://github.com/google/sentencepiece
+
+JackeyFont: https://archive.org/details/jackeyfont
+
+Tesseract: https://github.com/tesseract-ocr/tesseract/
