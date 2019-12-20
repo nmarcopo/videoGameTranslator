@@ -73,7 +73,7 @@ class Translator(object):
             [tokens], [length] = tokens, length
             tokens = tokens[:length].tolist()
             texts.append(self.eng_tokenizer.detokenize(tokens))
-        return texts    
+        return '\n'.join(texts)
 
 
 if __name__ == "__main__":
@@ -89,6 +89,5 @@ if __name__ == "__main__":
     while True:
         text = input("Source: ")
         output = translator.translate([text])
-        output_str = '\n'.join(output)
-        print(f"Target: {output_str}")
+        print(f"Target: {output}")
         print("")
