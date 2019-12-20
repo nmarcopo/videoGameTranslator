@@ -41,7 +41,7 @@ train:
   effective_batch_size: 20000
   max_step: 1000000
 
-param:
+params:
   average_loss_in_time: true
   label_smoothing: 0.1
   optimizer: LazyAdam

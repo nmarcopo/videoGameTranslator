@@ -23,7 +23,7 @@ python sp_trainer.py --input-file train.<language> --model-name sp.<language>
 
 3. Use this command to run OpenNMT on custom configuration
 ```bash
-onmt-main --model_type transformer_custom.py --config config.yml train --with_eval
+onmt-main --config config.yml --model transformer_custom.py train --with_eval
 ```
 This will save all the training files and the models under model directory `train_transfomer_relative/`
 
