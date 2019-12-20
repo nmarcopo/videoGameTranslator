@@ -41,6 +41,8 @@ Edit global variables in `full_system/scripts/run_on_screenshots.py`
 2. change `screenshot_dir` to the folder where your OS is saving screenshot
   * For MAC, it is usually `/Users/<Your OS Username>/Desktop/`
 
+Once you are done...
+
 ```bash
 cd full_system/scripts/
 python3 run_on_screenshots.py
