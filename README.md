@@ -50,6 +50,12 @@ python3 run_on_screenshots.py
 
 Start playing your selected game in an emulator and when you want to see a translation, just take a screenshot using your OS's screenshot functionality. The translation will output on the terminal.
 
+# Example
+
+| Screenshot | Ground Truth | Our Translation|
+|------------|--------------|----------------|
+|![](example.png)| If you're confused, ask for help! Press the L or R Button! |  if you don't know anything, it'll help you with a l button or a r button.
+
 # References
 
 Dataset: https://nlp.stanford.edu/projects/jesc/
