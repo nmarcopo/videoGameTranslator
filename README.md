@@ -56,6 +56,8 @@ Start playing your selected game in an emulator and when you want to see a trans
 |------------|--------------|----------------|
 |![](example.png)| If you're confused, ask for help! Press the L or R Button! |  if you don't know anything, it'll help you with a l button or a r button.
 
+For more examples and metrics of our system's performance, you can read our [project report](final_report.pdf).
+
 # References
 
 Dataset: https://nlp.stanford.edu/projects/jesc/
